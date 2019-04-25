@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>{{category.name}}</p>
+
+    <p>views: {{category.views}}, likes: {{category.likes}}</p>
+    <a href="{% url 'mainapp:add_page' category_name_slug=category.slug %}">Add new page</a><br>
+    <h3>List of pages:</h3>
+    {% for page in pages %}
+      <p><a href="{{page.url}}">{{page}}</a></p>
+    {% endfor %}
+{% endblock %}

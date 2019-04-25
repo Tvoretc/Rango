@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+        <p>{{ hidden }}</p>
+      {% endfor %}
+
+      {% for field in form.visible_fields %}
+        <p>{{ fleid.errors }}</p>
+        <p>{{ field.help_text }}</p>
+        <p>{{ field }}</p>
+      {% endfor %}
+      <input type="submit" value="Submit">
+    </form>
+{% endblock %}

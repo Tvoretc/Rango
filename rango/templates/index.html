@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <img src="{% static 'images/rango.jpg' %}" alt=""><br>
+    <p>Rango says...</p>
+    <div>
+      hey there, partner! <br \>
+        <strong>{{boldmessage}}</strong><br \>
+    </div>
+
+    <a href="{% url 'mainapp:add_category' %}">add new category</a><br>
+    <a href="{% url 'about' %}">about page</a><br>
+    <p>Top 5 viewed categories</p>
+    {% if categories %}
+      {% for cat in categories %}
+        <a href="{% url 'mainapp:category_detail' category_name_slug=cat.slug %}">{{cat}}</a><br>
+      {% endfor %}
+    {% else %}
+      <p>No categories.</p>
+    {% endif %}
+
+    <h3>Top 10 viewed pages.</h3>
+    {% if pages %}
+      {% for page in pages %}
+        <a href="{{page.url}}">{{page}}</a><br>
+      {% endfor %}
+    {% else %}
+      <p>No pages.</p>
+    {% endif %}
+{% endblock %}
