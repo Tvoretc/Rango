@@ -19,10 +19,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from mainapp import urls as mainurls
 from rango import views
+from mainapp import views as mainviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name = 'index'),
     url(r'^category/', include(mainurls)),
     url(r'^about/$', views.about, name = 'about'),
-] + static(settings.MEDIA_URL, docuument_root=settings.MEDIA_ROOT)
+    url(r'^register/$', mainviews.register, name = 'register'),
+    url(r'^login/$', mainviews.user_login, name = 'login'),
+    url(r'^logout/$', mainviews.user_logout, name = 'logout'),
+] + static(settings.MEDIA_URL,  document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
